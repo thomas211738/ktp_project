@@ -3,6 +3,10 @@ from flask import Blueprint, render_template, request, flash
 
 auth = Blueprint('auth', __name__)
 
+@auth.route('/home')
+def home():
+    return render_template("home.html")
+
 @auth.route('/login', methods=['GET','POST'])
 def login():
     return render_template("login.html")
