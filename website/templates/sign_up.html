@@ -2,47 +2,68 @@
 
 {% block content %}
 <form method="POST">
-    <h3 align="center">Sign Up</h3>
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input
-        type="text"
-        class="form-control"
-        id="firstName"
-        name="firstName"
-        placeholder="Enter first name"
-      />
+  <style>
+    body {
+      background: radial-gradient(circle, #eeeeee, #8fb5db);
+    }
+  </style>
+
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="row border rounded-5 p-3 bg-white shadow box-area" style="width: 930px;">
+
+        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #5c93ca;">
+            <div class="featured-image mb-3">
+            <img src="../static/images/ktplogo.png" class="img-fluid" style="width: 250px;">
+            </div>
+        </div>           
+        <div class="col-md-6 right-box" style="padding: 40px 30px 40px 40px;">
+          <div class="header-text mb-4">
+                <h2>Sign Up</h2>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input name="firstname" type="text" class="form-control form-control-lg bg-light fs-6" placeholder="First Name" aria-label="First Name">
+            </div>
+            <div class="col">
+              <input name = "lastname" type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Last Name" aria-label="Last Name">
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input
+              type="email"
+              class="form-control form-control-lg bg-light fs-6"
+              id="email"
+              name="email"
+              placeholder="Enter Email Address"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <input
+              type="password"
+              class="form-control form-control-lg bg-light fs-6"
+              id="password1"
+              name="password1"
+              placeholder="Enter Password"
+            />
+          </div>
+          <div class="input-group mb-4">
+            <input
+              type="password"
+              class="form-control form-control-lg bg-light fs-6"
+              id="password2"
+              name="password2"
+              placeholder="Confirm Password"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <button class="btn btn-lg btn-primary w-100 fs-6">Sign Up</button>
+          </div>
+          <div class="row">
+            <small>Alreeady have account? <a href="/login">Sign In</a></small>
+          </div>
+      </div> 
     </div>
-    <div class="form-group">
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        name="email"
-        placeholder="Enter email address"
-      />
-    </div>
-    <div class="form-group">
-      <label for="password1">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        id="password1"
-        name="password1"
-        placeholder="Enter password"
-      />
-    </div>
-    <div class="form-group">
-      <label for="password2">Password (Confirm)</label>
-      <input
-        type="password"
-        class="form-control"
-        id="password2"
-        name="password2"
-        placeholder="Confirm password"
-      />
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  </div>
+
+</form>
 {% endblock %}
