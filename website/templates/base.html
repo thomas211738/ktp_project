@@ -19,8 +19,7 @@
             body {
                 font-family: 'Share Tech Mono', monospace;
             }
-          
-          </style>
+        </style>
         
           <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-body-tertiary">
             <div class="container-fluid">
@@ -33,17 +32,16 @@
         {% with messages = get_flashed_messages(with_categories=true) %} {% if
         messages %} {% for category, message in messages %} {% if category ==
         'error' %}
-        <div class="alert alert-danger alter-dismissable fade show" role="alert">
+
+        <div class="alert alert-danger alter-dismissable fade show d-flex justify-content-between" role="alert">
             {{ message }}
-            <button type="button" class="close" data-dismiss="alert">
-            <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" aria-label="Close" class="btn-close" data-dismiss="alert"></button>
         </div>
+
         {% else %}
-        <div class="alert alert-success alter-dismissable fade show" role="alert">
+        <div class="alert alert-danger alter-dismissable fade show d-flex justify-content-between" role="alert">
             {{ message }}
-            <button type="button" class="close" data-dismiss="alert">
-            <span aria-hidden="true">&times;</span>
+            <button style= type="button" aria-label="Close" class="btn-close" data-dismiss="alert">
             </button>
         </div>
         {% endif %} {% endfor %} {% endif %} {% endwith %}
