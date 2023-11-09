@@ -14,7 +14,7 @@ auth = Blueprint('auth', __name__)
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
-ALLOWED_EMAILS= ['pharaoh@bu.edu']
+ALLOWED_EMAILS= ['pharaoh@bu.edu','jleeds@bu.edu']
 
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
 flow = Flow.from_client_secrets_file(
@@ -66,8 +66,7 @@ def callback():
         session['user_email'] = user_email
         return redirect("/home")
     else:
-        flash('Unauthorized. Only KTP member emails are allowed. Please contact E-board if you belive this is an error.', category='error')
-        return redirect("/login")
+        return 'Unauthorized. Only certain emails are allowed.'
 
 
 @auth.route('/login', methods=['GET','POST'])
@@ -98,7 +97,7 @@ def sign_up():
 
         if len(first_name) < 2:
             flash('First name must be greater than 1 character.', category='error')
-        elif len(last_name) < 2:
+        elif len(first_name) < 2:
             flash('Last name must be greater than 1 character.', category='error')
         elif len(email) < 4:
             flash('Email must be greater than 3 characters.', category='error')
@@ -109,5 +108,5 @@ def sign_up():
 
         else:
             flash('Account successfully created!', category='success')
-    
+            
     return render_template("sign_up.html")
