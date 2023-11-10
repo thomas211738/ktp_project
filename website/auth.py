@@ -67,7 +67,8 @@ def callback():
         session['user_email'] = user_email
         return redirect("/home")
     else:
-        return 'Unauthorized. Only certain emails are allowed.'
+        flash('Unauthorized. Only certain emails are allowed.', category='error')
+        return redirect("/login")
 
 
 @auth.route('/login', methods=['GET','POST'])
@@ -98,7 +99,7 @@ def sign_up():
 
         if len(first_name) < 2:
             flash('First name must be greater than 1 character.', category='error')
-        elif len(first_name) < 2:
+        elif len(last_name) < 2:
             flash('Last name must be greater than 1 character.', category='error')
         elif len(email) < 4:
             flash('Email must be greater than 3 characters.', category='error')
