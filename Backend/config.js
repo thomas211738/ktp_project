@@ -1,2 +1,1 @@
-
-export const PORT = 5555; 
+export const PORT = 3000; // ideally save port in .env file

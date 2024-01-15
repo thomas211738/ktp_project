@@ -1,9 +1,10 @@
- 
 import express from "express";
-import { PORT } from "./config.js";
+import {PORT} from "./config.js"; // ideally import PORT from .env file
+
 
 const app = express();
 
+
 app.listen(PORT, () => {
-    console.log(`App is listening to port: ${PORT}` );
+console.log(`App is listening to port: ${PORT}`)
 });
