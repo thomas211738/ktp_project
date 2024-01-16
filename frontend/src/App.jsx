@@ -1,11 +1,21 @@
-import React from 'react';
-
+// src/App.jsx
+import React, { useState } from 'react';
+import { Routes, Route} from 'react-router-dom';
+import LoginPage from './Pages/LoginPage';
 
 const App = () => {
-return (
-<div className='bg-red-400 text-white'>Hello World</div>
-)
-}
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
+  const handleLogin = (username) => {
+    // Perform any additional login logic here
+    setLoggedInUser(username);
+  };
 
-export default App
+  return (
+    <Routes>
+        <Route path="/" element={<LoginPage onLogin={handleLogin} />} />
+    </Routes>
+  );
+};
+
+export default App;
