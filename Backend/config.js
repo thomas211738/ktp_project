@@ -1,4 +1,6 @@
-export const PORT = 3000; // ideally save port in .env file
+import dotenv from 'dotenv';
 
-require('dotenv').config();
-const mongoDBURL = process.env.MONGODB_URL;
+dotenv.config();
+
+export const mongoDBURL = process.env.MONGODB_URL;
+export const PORT = process.env.PORT;
