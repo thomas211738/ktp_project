@@ -1,5 +1,8 @@
 
 import React, { useState } from 'react';
+import KTPLogo from '../../images/KTPLogo.jpeg';
+import googleLogo from "../..//images/google-logo.png";
+
 
 const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState('');
@@ -16,42 +19,24 @@ const LoginForm = ({ onLogin }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-6">Login</h2>
-      <form>
-        <div className="mb-4">
-          <label htmlFor="username" className="block text-gray-700 text-sm font-bold mb-2">
-            Username:
-          </label>
-          <input
-            type="text"
-            id="username"
-            className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div className="mb-6">
-          <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
-            Password:
-          </label>
-          <input
-            type="password"
-            id="password"
-            className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button
-          type="button"
-          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
-          onClick={handleLogin}
-        >
-          Login
-        </button>
-      </form>
-    </div>
+    <section className="bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+          <a className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+              <img className="w-11 h-11 mr-2 overflow-hidden rounded-full" src={KTPLogo} alt="logo"></img>
+              KAPPA THETA PI    
+          </a>
+          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+              <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <button type="submit" className="w-full flex items-center justify-center text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                  <img src={googleLogo} alt="Google Logo" className="h-6 w-6 mr-2" />
+                  Sign In with Google
+                </button>
+
+
+              </div>
+          </div>
+      </div>
+    </section>
   );
 };
 
