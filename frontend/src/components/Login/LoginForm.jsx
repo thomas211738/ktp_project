@@ -7,42 +7,61 @@ import { useSnackbar } from 'notistack';
 import axios from 'axios';
 
 
-
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [isBUEmail, setIsBUEmail] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [admins, setAdmins] = useState([]);
   const {enqueueSnackbar} = useSnackbar();
 
-  const handleSaveUser = () => {
-    const data = {
-      email,
-      firstName,
-      lastName,
-      isBUEmail
-    };
-
-  };
-
-
-
-  function handleCallbackResponse(response){
-     var userObject = jwtDecode(response.credential);
-
-     console.log(userObject);
-
-     setEmail(userObject.email)
-     setFirstName(userObject.given_name)
-     setLastName(userObject.family_name)
-     
-    if (userObject.hd === "bu.edu"){
-      setIsBUEmail(true)
-    } else{
-      enqueueSnackbar('Email must be a BU Email', { variant: 'error' });
+  async function isAdmin(email){
+    try {
+      const response = await axios.get('http://localhost:3000/admin');
+      const admins = response.data;
+  
+      for (let i = 0; i < admins.count; i++) {
+        if (email === admins.data[i].email) {
+          return true;
+        }
+      }
+      
+      return false;
+    } catch (error) {
+      console.log(error);
+      return false;
     }
+  }
+  
+  async function isUser(email) {
+    try {
+      const response = await axios.get('http://localhost:3000/user');
+      const users = response.data;
+  
+      for (let i = 0; i < users.count; i++) {
+        if (email === users.data[i].email) {
+          return true;
+        }
+      }
+  
+      return false;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
 
-     
+
+  async function handleCallbackResponse(response){
+    var userObject = jwtDecode(response.credential);
+    
+    const isUserExists = await isUser(userObject.email);
+    const isAdminExists = await isAdmin(userObject.email);
+
+    if (isUserExists){
+      window.location.href = '/tasks';
+    } else if (isAdminExists){
+      window.location.href = '/admin';
+    } else {
+      enqueueSnackbar('Unauthorized User', { variant: 'error' });
+    }
   }
 
   useEffect(() => {

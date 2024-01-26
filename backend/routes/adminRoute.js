@@ -1,30 +1,30 @@
 
 import express from "express";
-import { User } from "../models/userModel.js";
+import { Admin } from "../models/AdminModel.js";
 
 const router = express.Router();
 
-// Route to Save a new user
+// Route to Save a new admin
 router.post('/', async (request, response) => {
     try{
         if (
             !request.body.email ||
             !request.body.firstName ||
-            !request.body.lastName
+            !request.body.lastName 
           ) {
             return response.status(400).send({
               message: 'Could not get all required fields',
             });
           }
-          const newUser = {
+          const newAdmin = {
             email: request.body.email,
             firstName: request.body.firstName,
             lastName: request.body.lastName,
           };
       
-          const user = await User.create(newUser);
+          const admin = await Admin.create(newAdmin);
       
-          return response.status(201).send(user);
+          return response.status(201).send(admin);
 
     }catch (error){
         console.log(error.message);
@@ -32,14 +32,14 @@ router.post('/', async (request, response) => {
     }
 });
 
-// Route for Get All users from database
+// Route for Get All admins from database
 router.get('/', async (request, response) => {
     try {
-      const users = await User.find({});
+      const admins = await Admin.find({});
   
       return response.status(200).json({
-        count: users.length,
-        data: users,
+        count: admins.length,
+        data: admins,
       });
     } catch (error) {
       console.log(error.message);
@@ -47,21 +47,21 @@ router.get('/', async (request, response) => {
     }
   });
 
-// Route for Get One user from database by id
+// Route for Get One admin from database by id
 router.get('/:id', async (request, response) => {
     try {
       const { id } = request.params;
   
-      const user = await User.findById(id);
+      const admin = await Admin.findById(id);
   
-      return response.status(200).json(user);
+      return response.status(200).json(admin);
     } catch (error) {
       console.log(error.message);
       response.status(500).send({ message: error.message });
     }
   });
   
-// Route for Update a user
+// Route for Update a admin
 router.put('/:id', async (request, response) => {
 try {
     if (
@@ -76,31 +76,31 @@ try {
     }
     const { id } = request.params;
 
-    const result = await User.findByIdAndUpdate(id, request.body);
+    const result = await Admin.findByIdAndUpdate(id, request.body);
 
     if (!result) {
-    return response.status(404).json({ message: 'User not found' });
+    return response.status(404).json({ message: 'admin not found' });
     }
 
-    return response.status(200).send({ message: 'User updated successfully' });
+    return response.status(200).send({ message: 'admin updated successfully' });
 } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
 }
 });
 
-// Route for Delete a user
+// Route for Delete a admin
 router.delete('/:id', async (request, response) => {
 try {
     const { id } = request.params;
 
-    const result = await User.findByIdAndDelete(id);
+    const result = await Admin.findByIdAndDelete(id);
 
     if (!result) {
-    return response.status(404).json({ message: 'User not found' });
+    return response.status(404).json({ message: 'admin not found' });
     }
 
-    return response.status(200).send({ message: 'User deleted successfully' });
+    return response.status(200).send({ message: 'admin deleted successfully' });
 } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });

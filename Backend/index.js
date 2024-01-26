@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 import "./config.js";
 import cors from 'cors';
 import userRoute from './routes/userRoute.js'; 
+import adminRoute from './routes/adminRoute.js'; 
+
 
 const app = express();
 
@@ -18,7 +20,10 @@ console.log(request)
 return response.status(234).send(`Backend for Website`)
 });
 
-app.use('/users', userRoute);
+app.use('/user', userRoute);
+app.use('/admin', adminRoute);
+
+
 
 mongoose
 .connect(process.env.mongoDBURI)
@@ -31,3 +36,4 @@ console.log(`App is listening to port: ${process.env.PORT}`)
 .catch((error) => {
 console.log(error);
 });
+ 
